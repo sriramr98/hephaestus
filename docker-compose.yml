@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: mydb
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
+      - ./server/db/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
+
+  backend:
+    build: ./server
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: mydb
+    depends_on:
+      - postgres
+
+volumes:
+  postgres_data:
