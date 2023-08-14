@@ -9,7 +9,7 @@ services:
       POSTGRES_DB: mydb
     volumes:
       - ./postgres_data:/var/lib/postgresql/data
-      - ./server/db/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
+      - ./server/db/init.sql:/docker-entrypoint-initdb.d/create_tables.sql
 
   backend:
     build: ./server
