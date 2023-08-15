@@ -5,7 +5,7 @@ import (
 	"gitub.com/sriramr98/hephaestus/controllers"
 )
 
-func GetAPIRoutes() *Router {
+func getAPIRoutes() *Router {
 	router := &Router{}
 
 	router.AddRoute(Route{
