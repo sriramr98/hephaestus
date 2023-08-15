@@ -8,17 +8,15 @@ import (
 )
 
 type MockGin struct {
-	Method           string
 	ResponseRecorder httptest.ResponseRecorder
+	Request          http.Request
 }
 
 func (mc MockGin) GetTestGinContext() *gin.Context {
 	gin.SetMode(gin.TestMode)
 
 	ctx, _ := gin.CreateTestContext(&mc.ResponseRecorder)
-	ctx.Request = &http.Request{
-		Header: make(http.Header),
-	}
+	// ctx.Request = &mc.Request
 
 	return ctx
 }
