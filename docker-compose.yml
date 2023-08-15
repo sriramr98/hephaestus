@@ -18,6 +18,8 @@ services:
       POSTGRES_USER: myuser
       POSTGRES_PASSWORD: mypassword
       POSTGRES_DB: mydb
+    ports:
+      - "8080:8080"
     depends_on:
       - postgres
 

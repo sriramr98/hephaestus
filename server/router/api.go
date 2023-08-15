@@ -14,5 +14,7 @@ func GetAPIRoutes() *Router {
 		Handlers: []gin.HandlerFunc{controllers.GetHealth},
 	})
 
+	setupUserRoutes(router)
+
 	return router
 }
