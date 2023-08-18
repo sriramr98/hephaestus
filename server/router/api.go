@@ -3,18 +3,19 @@ package router
 import (
 	"github.com/gin-gonic/gin"
 	"gitub.com/sriramr98/hephaestus/controllers"
+	"net/http"
 )
 
-func getAPIRoutes() *Router {
+func GetAPIRoutes() Router {
 	router := &Router{}
 
 	router.AddRoute(Route{
 		Path:     "/health",
-		Method:   GET,
+		Method:   http.MethodGet,
 		Handlers: []gin.HandlerFunc{controllers.GetHealth},
 	})
 
 	setupUserRoutes(router)
 
-	return router
+	return *router
 }

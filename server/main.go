@@ -1,10 +1,9 @@
 package main
 
 import (
-	"log"
-
 	"github.com/joho/godotenv"
 	"gitub.com/sriramr98/hephaestus/router"
+	"log"
 )
 
 func main() {
@@ -12,7 +11,14 @@ func main() {
 		log.Fatalf("Error loading .env file: %v", err)
 	}
 
-	r := router.GetGinRouter()
+	engine := router.GetRouterEngine()
 
-	r.Run()
+	server := Server{
+		Opts{
+			Port:   8080,
+			Engine: engine,
+		},
+	}
+
+	server.Run()
 }

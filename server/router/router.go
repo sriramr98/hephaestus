@@ -4,18 +4,10 @@ import "github.com/gin-gonic/gin"
 
 type Method int
 
-const (
-	GET Method = iota
-	POST
-	PUT
-	PATCH
-	DELETE
-)
-
 type Route struct {
 	Path     string
 	Handlers []gin.HandlerFunc
-	Method   Method
+	Method   string
 }
 
 type Router struct {

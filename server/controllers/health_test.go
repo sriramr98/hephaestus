@@ -11,7 +11,7 @@ import (
 
 func TestHealthController(t *testing.T) {
 	t.Run("Returns 200 status code", func(t *testing.T) {
-		res := *httptest.NewRecorder()
+		res := httptest.NewRecorder()
 		gc := mocks.MockGin{
 			ResponseRecorder: res,
 		}

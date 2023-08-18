@@ -1,24 +1,28 @@
 package e2e
 
 import (
+	"github.com/stretchr/testify/assert"
+	"gitub.com/sriramr98/hephaestus/mocks"
+	"gitub.com/sriramr98/hephaestus/router"
 	"net/http"
 	"net/http/httptest"
 	"testing"
-
-	"github.com/stretchr/testify/assert"
-	"gitub.com/sriramr98/hephaestus/router"
 )
 
-func TestHealthController(t *testing.T) {
-	t.Run("Retrns 200 status code", func(t *testing.T) {
-		res := httptest.NewRecorder()
-		req, _ := http.NewRequest(http.MethodGet, "/health", nil)
+func TestHealthRoute(t *testing.T) {
+	t.Run("Returns 200 status code", func(t *testing.T) {
+		responseRecorder := httptest.NewRecorder()
+		request, err := http.NewRequest(http.MethodGet, "/health", nil)
+		if err != nil {
+			t.Fatal(err)
+		}
+		mockGin := mocks.MockGin{
+			Request:          request,
+			ResponseRecorder: responseRecorder,
+		}
 
-		router := router.GetGinRouter()
+		mockGin.ServeTestEngine(router.GetRouterEngine())
 
-		router.ServeHTTP(res, req)
-
-		assert.Equal(t, http.StatusOK, res.Code)
-
+		assert.Equal(t, http.StatusOK, responseRecorder.Code)
 	})
 }
