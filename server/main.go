@@ -12,5 +12,8 @@ func main() {
 	}
 
 	r := router.GetGinRouter()
-	r.Run()
+	err := r.Run()
+	if err != nil {
+		log.Fatalf("%v", err)
+	}
 }
