@@ -11,14 +11,6 @@ func main() {
 		log.Fatalf("Error loading .env file: %v", err)
 	}
 
-	engine := router.GetRouterEngine()
-
-	server := Server{
-		Opts{
-			Port:   8080,
-			Engine: engine,
-		},
-	}
-
-	server.Run()
+	r := router.GetGinRouter()
+	r.Run()
 }

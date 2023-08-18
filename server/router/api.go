@@ -7,6 +7,7 @@ import (
 )
 
 func GetAPIRoutes() Router {
+
 	router := &Router{}
 
 	router.AddRoute(Route{

@@ -20,6 +20,5 @@ func TestHealthController(t *testing.T) {
 		GetHealth(context)
 
 		assert.Equal(t, http.StatusOK, res.Code)
-
 	})
 }
