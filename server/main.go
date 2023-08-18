@@ -1,10 +1,9 @@
 package main
 
 import (
-	"log"
-
 	"github.com/joho/godotenv"
 	"gitub.com/sriramr98/hephaestus/router"
+	"log"
 )
 
 func main() {
@@ -13,6 +12,8 @@ func main() {
 	}
 
 	r := router.GetGinRouter()
-
-	r.Run()
+	err := r.Run()
+	if err != nil {
+		log.Fatalf("%v", err)
+	}
 }
