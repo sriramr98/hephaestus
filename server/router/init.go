@@ -1,12 +1,15 @@
 package router
 
 import (
-	"github.com/gin-gonic/gin"
 	"net/http"
+
+	"github.com/gin-gonic/gin"
+	middlewares "gitub.com/sriramr98/hephaestus/middleware"
 )
 
 func GetGinRouter() *gin.Engine {
 	r := gin.Default()
+	r.Use(middlewares.Authenticator())
 	apiRoutes := GetAPIRoutes()
 
 	for _, route := range apiRoutes.Routes {
